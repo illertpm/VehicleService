@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vehicles>
+    <Vehicle>
+        <Year>1999</Year>
+        <Make>Kia</Make>
+        <Make>Ford</Make>
+        <Make>GMC</Make>
+        <Model>f150</Model>
+    </Vehicle>
+
+</Vehicles>

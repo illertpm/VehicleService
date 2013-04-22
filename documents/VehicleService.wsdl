@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<definitions name="VehicleService" targetNamespace="urn:VehicleService" xmlns:tns="urn:VehicleService"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://com.northcutt.vehicles" xmlns:vs="com.northcutt.vehicles.dto">
+<import namespace="http://com.northcutt.vehicles.dto"
+           location="http://com.northcutt.vehicles/VehicleService.xsd"/>
+
+  
+  <message name="tns:request">
+    <part name="searchCriteria" type="vs:Vehicle" />
+  </message>
+  
+  <message name="tns:response">
+    <part name="return" type="vs:Vehicles" />
+  </message>  
+  
+  <portType name="vs:VehiclePort">
+    <operation name="doHello">
+	  <input message="vs:Vehicle" />
+	  <output message="vs:Vehicles" />
+	</operation>
+  </portType>
+  
+  <binding name="HelloBinding" type="tns:VehiclePort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+	  <operation name="doHello">
+	    <soap:operation soapAction="urn:VehicleAction" />
+		<input>
+		  <soap:body use="encoded" namespace="urn:Hello" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:Hello" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</output>
+	  </operation>
+  </binding>
+  
+  <service name="HelloService">
+    <port name="VehiclePort" binding="tns:HelloBinding">
+	  <soap:address location="http://localhost/vehicles" />
+	</port>
+  </service>
+    
+</definitions>
